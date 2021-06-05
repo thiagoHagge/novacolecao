@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mareia - Save the Date</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'fonte';
+            src: url('Nasa21.eot');
+            font-weight: normal;
+            font-style: normal;
+            }
+            @font-face {
+                font-family: 'fonte';
+                src: url('Nasa21.ttf');
+                font-weight: normal;
+                font-style: normal;
+            }
+        body {
+            font-family: 'fonte';
+        }
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        /* Add some content at the bottom of the video/page */
+        .content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        }
+
+        /* Style the button used to pause/play the video */
+        #myBtn {
+        width: 200px;
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+        }
+
+        #myBtn:hover {
+        background: #ddd;
+        color: black;
+        }
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        img {
+            margin-top: 50px;
+        }
+        h2 {
+            margin: 0;
+            font-size: 50px
+        }
+        h6 {
+            margin: 0;
+            font-size: 30px
+        }
+        a    {
+            background-color: #ffb701;
+            border: 1px solid #ffb701b0;
+            padding: 15px 30px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+        }
+        i {
+            color: #00aa4e
+        }
+        p {
+            margin-top: 67px;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- The video -->
+<video autoplay muted loop id="myVideo">
+    <source src="mareia2.mov" type="video/mp4">
+</video>
+<div class="content">
+    <img src="logo.png" style="width: 200px">
+    <h1>Contagem regressiva para nossa nova coleção:</h1>
+    <div id="days"></div>
+    <h6>dias</h6>
+    <p>Cadastre-se na pré-venda:</p>
+    <a href="https://api.whatsapp.com/send?phone=5573991716366&text=Oi%20Lu!%20Tenho%20interesse%20na%20pr%C3%A9-venda%20%F0%9F%92%9B">
+        <i class="fab fa-whatsapp"></i> 
+        Fale com a gente
+    </a>
+</div>  
+
+<script>
+    // Get the video
+    var video = document.getElementById("myVideo");
+    
+    // Get the button
+    var btn = document.getElementById("myBtn");
+    
+    // Pause and play the video, and change the button text
+    function myFunction() {
+        if (video.paused) {
+            video.play();
+            btn.innerHTML = "Pause";
+        } else {
+            video.pause();
+            btn.innerHTML = "Play";
+        }
+    }
+    var data = new Date();
+    var dia     = data.getDate();
+    dia = 20 - dia
+    var node = document.createElement("h2");
+    var textnode = document.createTextNode(dia);
+    node.appendChild(textnode);
+    document.getElementById('days').appendChild(node)
+</script>
+<script src="https://kit.fontawesome.com/4caf299d90.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
