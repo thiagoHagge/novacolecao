@@ -63,11 +63,11 @@
         a    {
             background-color: #ffb701;
             border: 1px solid #ffb701b0;
-            padding: 15px 30px;
+            padding: 20px 35px;
             border-radius: 30px;
             color: #fff;
             text-decoration: none;
-            margin-bottom: 37vh;
+            margin-bottom: 45vh;
         }
         i {
             color: #00aa4e
@@ -86,6 +86,7 @@
         }
         .border-e {
             border-right: 2px dashed #000;
+            padding-right: 4px;
         }
     </style>
 </head>
@@ -95,7 +96,7 @@
     <source src="mareia.mov" type="video/mp4">
 </video>
 <div class="content">
-    <img src="logo.png" style="width: 200px">
+    <img src="logo.png" style="width: 180px">
     <h1>Contagem regressiva para nossa nova coleção:</h1>
     <div class="timer">
         <div>
@@ -126,11 +127,9 @@
 <script src="https://kit.fontawesome.com/4caf299d90.js" crossorigin="anonymous"></script>
 <script>
     setInterval(function(){
-        // clean 
-        
-
         // target = [day, hour, min, sec]
-        const targetDate = [20, 15, 0, 0]
+        const targetDate = [20, 15, 0, 0];
+
         var date = new Date();
         // getDay
         var day      = date.getDate();
@@ -156,7 +155,7 @@
             --minute
             second += 60 
         }
-
+        
         // setDay
         document.getElementById('days').innerHTML = day;
         // setHour
