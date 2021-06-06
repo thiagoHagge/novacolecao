@@ -8,14 +8,14 @@
 
     <style>
         @font-face {
-            font-family: 'fonte';
-            src: url('Nasa21.eot');
+            font-family: 'Nasa21';
+            src: url('Nasa21.ttf');
             font-weight: normal;
             font-style: normal;
         }
         @font-face {
-            font-family: 'fonte';
-            src: url('Nasa21.ttf');
+            font-family: 'Bohemian';
+            src: url('TheBohemianFree.otf');
             font-weight: normal;
             font-style: normal;
         }
@@ -23,7 +23,8 @@
             margin: 0;
         }
         body {
-            font-family: 'fonte';
+            font-family: 'Nasa21';
+            position: fixed;
         }
         #myVideo {
             position: fixed;
@@ -35,39 +36,26 @@
 
         /* Add some content at the bottom of the video/page */
         .content {
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        height: 100vh;
-        width: 100vw;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            height: 130vh;
+            width: 100vw;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
         }
 
-        /* Style the button used to pause/play the video */
-        #myBtn {
-        width: 200px;
-        font-size: 18px;
-        padding: 10px;
-        border: none;
-        background: #000;
-        color: #fff;
-        cursor: pointer;
-        }
-
-        #myBtn:hover {
-        background: #ddd;
-        color: black;
-        }
         h1 {
             text-align: center;
-            font-size: 30px;
+            font-size: 24px;
+            font-family: 'Bohemian';
+            text-shadow: 1px 1px #808080;
         }
 
         h2 {
-            font-size: 50px
+            font-size: 40px
         }
         h6 {
             font-size: 30px
@@ -79,6 +67,7 @@
             border-radius: 30px;
             color: #fff;
             text-decoration: none;
+            margin-bottom: 37vh;
         }
         i {
             color: #00aa4e
@@ -87,19 +76,46 @@
             font-size: 26px;
             font-weight: 700;
         }
-
+        .timer {
+            text-align: center;
+        }
+        .timer div {
+            text-align: center;
+            display: inline-block;
+            width: 49%;
+        }
+        .border-e {
+            border-right: 2px dashed #000;
+        }
     </style>
 </head>
 <body>
     <!-- The video -->
 <video autoplay muted loop playsinline id="myVideo">
-    <source src="mareia2.mov" type="video/mp4">
+    <source src="mareia.mov" type="video/mp4">
 </video>
 <div class="content">
     <img src="logo.png" style="width: 200px">
     <h1>Contagem regressiva para nossa nova coleção:</h1>
-    <div id="days"></div>
-    <h6>dias</h6>
+    <div class="timer">
+        <div>
+            <h2 id="days" class="border-e"></h2>
+            <p>dias</p>
+        </div>
+        <div>
+            <h2 id="hours"></h2>
+            <p>horas</p>
+        </div>
+        <div>
+            <h2 id="minutes" class="border-e"></h2>
+            <p>minutos</p>
+        </div>
+        <div>
+            <h2 id="seconds"></h2>
+            <p>segundos</p>
+        </div>
+
+    </div>
     <p>Cadastre-se na pré-venda:</p>
     <a href="https://api.whatsapp.com/send?phone=5573991716366&text=Oi%20Lu!%20Tenho%20interesse%20na%20pr%C3%A9-venda%20%F0%9F%92%9B">
         <i class="fab fa-whatsapp"></i> 
@@ -107,32 +123,51 @@
     </a>
 </div>  
 
-<script>
-    // Get the video
-    var video = document.getElementById("myVideo");
-    
-    // Get the button
-    var btn = document.getElementById("myBtn");
-    
-    // Pause and play the video, and change the button text
-    function myFunction() {
-        if (video.paused) {
-            video.play();
-            btn.innerHTML = "Pause";
-        } else {
-            video.pause();
-            btn.innerHTML = "Play";
-        }
-    }
-    var data = new Date();
-    var dia     = data.getDate();
-    dia = 20 - dia
-    var node = document.createElement("h2");
-    var textnode = document.createTextNode(dia);
-    node.appendChild(textnode);
-    document.getElementById('days').appendChild(node)
-</script>
 <script src="https://kit.fontawesome.com/4caf299d90.js" crossorigin="anonymous"></script>
+<script>
+    setInterval(function(){
+        // clean 
+        
+
+        // target = [day, hour, min, sec]
+        const targetDate = [20, 15, 0, 0]
+        var date = new Date();
+        // getDay
+        var day      = date.getDate();
+        day          = targetDate[0] - day
+        // getHour
+        var hour      = date.getHours();
+        hour          = targetDate[1] - hour
+        if(hour < 0) {
+            --day
+            hour += 24 
+        }
+        // getMinutes
+        var minute      = date.getMinutes();
+        minute         = targetDate[2] - minute
+        if (minute < 0) {
+            --hour
+            minute += 60 
+        }
+        // getSeconds
+        var second      = date.getSeconds();
+        second         = targetDate[3] - second
+        if (second < 0) {
+            --minute
+            second += 60 
+        }
+
+        // setDay
+        document.getElementById('days').innerHTML = day;
+        // setHour
+        document.getElementById('hours').innerHTML = hour;
+        // setMinute
+        document.getElementById('minutes').innerHTML = minute;
+        // setSecond
+        document.getElementById('seconds').innerHTML = second;
+    }, 1000);
+
+</script>
 
 </body>
 </html>
