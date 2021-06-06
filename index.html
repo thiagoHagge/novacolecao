@@ -68,6 +68,14 @@
             font-size: 26px;
             font-weight: 700;
         }
+        .timer {
+            text-align: center;
+        }
+        .timer div {
+            text-align: center;
+            display: inline-block;
+            width: 49%;
+        }
 
     </style>
 </head>
@@ -79,8 +87,25 @@
 <div class="content">
     <img src="logo.png" style="width: 200px">
     <h1>Contagem regressiva para nossa nova coleção:</h1>
-    <div id="days"></div>
-    <h6>dias</h6>
+    <div class="timer">
+        <div>
+            <h2 id="days" class="border-e"></h2>
+            <p>dias</p>
+        </div>
+        <div>
+            <h2 id="hours"></h2>
+            <p>horas</p>
+        </div>
+        <div>
+            <h2 id="minutes" class="border-e"></h2>
+            <p>minutos</p>
+        </div>
+        <div>
+            <h2 id="seconds"></h2>
+            <p>segundos</p>
+        </div>
+
+    </div>
     <p>Cadastre-se na pré-venda:</p>
     <a href="https://api.whatsapp.com/send?phone=5573991716366&text=Oi%20Lu!%20Tenho%20interesse%20na%20pr%C3%A9-venda%20%F0%9F%92%9B">
         <i class="fab fa-whatsapp"></i> 
@@ -90,13 +115,45 @@
 
 <script src="https://kit.fontawesome.com/4caf299d90.js" crossorigin="anonymous"></script>
 <script>
-    var data = new Date();
-    var dia     = data.getDate();
-    dia = 20 - dia
-    var node = document.createElement("h2");
-    var textnode = document.createTextNode(dia);
-    node.appendChild(textnode);
-    document.getElementById('days').appendChild(node)
+    setInterval(function(){
+        // target = [day, hour, min, sec]
+        const targetDate = [20, 15, 0, 0];
+
+        var date = new Date();
+        // getDay
+        var day      = date.getDate();
+        day          = targetDate[0] - day
+        // getHour
+        var hour      = date.getHours();
+        hour          = targetDate[1] - hour
+        if(hour < 0) {
+            --day
+            hour += 24 
+        }
+        // getMinutes
+        var minute      = date.getMinutes();
+        minute         = targetDate[2] - minute
+        if (minute < 0) {
+            --hour
+            minute += 60 
+        }
+        // getSeconds
+        var second      = date.getSeconds();
+        second         = targetDate[3] - second
+        if (second < 0) {
+            --minute
+            second += 60 
+        }
+        
+        // setDay
+        document.getElementById('days').innerHTML = day;
+        // setHour
+        document.getElementById('hours').innerHTML = hour;
+        // setMinute
+        document.getElementById('minutes').innerHTML = minute;
+        // setSecond
+        document.getElementById('seconds').innerHTML = second;
+    }, 1000);
 </script>
 </body>
 </html>
