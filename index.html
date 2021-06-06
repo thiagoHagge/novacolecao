@@ -25,42 +25,19 @@
         body {
             font-family: 'fonte';
         }
-        #myVideo {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-        }
-
-        /* Add some content at the bottom of the video/page */
+        
         .content {
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        height: 100vh;
-        width: 100vw;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            height: 110vh;
+            width: 100vw;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
         }
 
-        /* Style the button used to pause/play the video */
-        #myBtn {
-        width: 200px;
-        font-size: 18px;
-        padding: 10px;
-        border: none;
-        background: #000;
-        color: #fff;
-        cursor: pointer;
-        }
-
-        #myBtn:hover {
-        background: #ddd;
-        color: black;
-        }
         h1 {
             text-align: center;
             font-size: 30px;
@@ -79,6 +56,8 @@
             border-radius: 30px;
             color: #fff;
             text-decoration: none;
+            margin-bottom: 15vh;
+
         }
         i {
             color: #00aa4e
@@ -107,31 +86,6 @@
     </a>
 </div>  
 
-<script>
-    // Get the video
-    var video = document.getElementById("myVideo");
-    
-    // Get the button
-    var btn = document.getElementById("myBtn");
-    
-    // Pause and play the video, and change the button text
-    function myFunction() {
-        if (video.paused) {
-            video.play();
-            btn.innerHTML = "Pause";
-        } else {
-            video.pause();
-            btn.innerHTML = "Play";
-        }
-    }
-    var data = new Date();
-    var dia     = data.getDate();
-    dia = 20 - dia
-    var node = document.createElement("h2");
-    var textnode = document.createTextNode(dia);
-    node.appendChild(textnode);
-    document.getElementById('days').appendChild(node)
-</script>
 <script src="https://kit.fontawesome.com/4caf299d90.js" crossorigin="anonymous"></script>
 
 </body>
